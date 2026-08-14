@@ -6,18 +6,21 @@ import { Button } from "@/components/ui/button";
 
 import { MobileSidebar } from "./mobile-sidebar";
 import { UserMenu } from "./user-menu";
+import { cn } from "@/lib/utils";
 
 interface NavbarProps {
   collapsed: boolean;
   onToggleSidebar: () => void;
 }
 
-export function Navbar({
-  collapsed,
-  onToggleSidebar,
-}: NavbarProps) {
+export function Navbar({ collapsed, onToggleSidebar }: NavbarProps) {
   return (
-    <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b bg-background px-4">
+    <header
+      className={cn(
+        "fixed top-0 right-0 z-30 flex h-16 items-center justify-between border-b bg-background/80 backdrop-blur-md px-4 transition-all duration-300",
+        collapsed ? "left-[72px]" : "left-[280px]",
+      )}
+    >
       <div className="flex items-center gap-2">
         {/* Mobile Menu */}
         <MobileSidebar />

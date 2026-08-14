@@ -30,13 +30,13 @@ export function SidebarItem({
   href={item.href}
   onClick={onClick}
   aria-current={isActive ? "page" : undefined}
-  className={cn(
-    "group flex h-11 items-center rounded-lg px-3 text-sm font-medium transition-colors duration-200",
-    isActive
-      ? "bg-primary text-primary-foreground"
-      : "text-muted-foreground hover:bg-accent hover:text-foreground",
-    collapsed && "justify-center px-0"
-  )}
+className={cn(
+  "group flex h-11 items-center rounded-lg px-3 text-sm font-medium transition-all duration-200",
+  isActive
+    ? "bg-white/15 text-white shadow-sm"
+    : "text-white/75 hover:bg-white/10 hover:text-white",
+  collapsed && "justify-center px-0"
+)}
 >
       <Icon
         className={cn(

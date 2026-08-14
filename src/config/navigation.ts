@@ -1,5 +1,6 @@
 import {
   LayoutDashboard,
+  Palette,
   Settings,
   Shield,
   Users,
@@ -23,9 +24,16 @@ export const navigation: NavigationItem[] = [
     href: "/roles",
     icon: Shield,
   },
-  {
-    title: "Settings",
-    href: "/settings",
-    icon: Settings,
-  },
+ {
+  title: "Settings",
+  href: "/settings",
+  icon: Settings,
+  children: [
+    {
+      title: "Appearance",
+      href: "/settings/appearance",
+      icon: Palette,
+    },
+  ],
+}
 ];

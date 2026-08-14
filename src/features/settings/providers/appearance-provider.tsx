@@ -23,15 +23,33 @@ export function AppearanceProvider({
       theme.primaryForeground
     );
 
-    root.style.setProperty(
-      "--sidebar-primary",
-      theme.sidebarPrimary
-    );
 
-    root.style.setProperty(
-      "--sidebar-primary-foreground",
-      theme.sidebarPrimaryForeground
-    );
+    root.style.setProperty("--sidebar", theme.sidebar);
+
+root.style.setProperty(
+  "--sidebar-foreground",
+  theme.sidebarForeground
+);
+
+root.style.setProperty(
+  "--sidebar-primary",
+  theme.sidebarPrimary
+);
+
+root.style.setProperty(
+  "--sidebar-primary-foreground",
+  theme.sidebarPrimaryForeground
+);
+
+root.style.setProperty(
+  "--sidebar-accent",
+  theme.sidebarAccent
+);
+
+root.style.setProperty(
+  "--sidebar-accent-foreground",
+  theme.sidebarAccentForeground
+);
 
     root.style.setProperty("--ring", theme.ring);
 

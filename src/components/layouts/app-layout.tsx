@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 
+import { cn } from "@/lib/utils";
+
 import { Navbar } from "./navbar";
 import { Sidebar } from "./sidebar";
 
@@ -15,10 +17,18 @@ export function AppLayout({
   const [collapsed, setCollapsed] = useState(false);
 
   return (
-    <div className="flex min-h-screen bg-muted/30">
+    <div className="min-h-screen bg-muted/30">
+      {/* Fixed Sidebar */}
       <Sidebar collapsed={collapsed} />
 
-      <div className="flex min-w-0 flex-1 flex-col">
+      {/* Content Wrapper */}
+      <div
+        className={cn(
+          "transition-all duration-300",
+          collapsed ? "lg:ml-[72px]" : "lg:ml-[280px]"
+        )}
+      >
+        {/* Fixed Navbar */}
         <Navbar
           collapsed={collapsed}
           onToggleSidebar={() =>
@@ -26,7 +36,8 @@ export function AppLayout({
           }
         />
 
-        <main className="flex-1 overflow-auto p-6">
+        {/* Scrollable Content */}
+        <main className="pt-16 p-6">
           {children}
         </main>
       </div>
