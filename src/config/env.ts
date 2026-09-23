@@ -5,9 +5,12 @@ export const env = createEnv({
   server: {},
 
   client: {
-    NEXT_PUBLIC_APP_NAME: z.string().min(1).default("Admin Web"),
+    NEXT_PUBLIC_APP_NAME: z.string().optional().default("Admin Web"),
 
-    NEXT_PUBLIC_API_URL: z.string().url().default("http://localhost:5000/api"),
+    NEXT_PUBLIC_API_URL: z
+      .string()
+      .optional()
+      .default("http://localhost:5000/api"),
   },
 
   runtimeEnv: {
@@ -15,4 +18,6 @@ export const env = createEnv({
 
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
   },
+
+  emptyStringAsUndefined: true,
 });
