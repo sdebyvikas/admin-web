@@ -4,23 +4,23 @@ This project follows a scalable and feature-based architecture to keep the codeb
 
 ## Folder Structure
 
-| Folder | Responsibility |
-|--------|----------------|
-| `app` | Contains application routing, layouts, and page-level configuration only. |
-| `assets` | Stores static assets such as images, SVGs, icons, logos, and fonts. |
-| `components/ui` | Reusable UI components generated from Shadcn UI. |
-| `components/shared` | Shared reusable application components like `AppButton`, `AppInput`, `Loader`, etc. |
-| `components/layouts` | Common layout components such as `Header`, `Sidebar`, `Footer`, and page wrappers. |
-| `config` | Application configuration including API endpoints, routes, environment configuration, and global settings. |
-| `constants` | Application-wide constants like regex patterns, validation messages, permissions, enums, and static values. |
-| `features` | Feature-based modules containing business logic, pages, components, hooks, services, and state for each feature. |
-| `hooks` | Global custom React hooks used across the application. |
-| `lib` | Third-party library configurations such as Axios, React Query, authentication setup, etc. |
-| `providers` | Global providers including Theme Provider, Query Provider, Auth Provider, and other context providers. |
-| `services` | Shared services for API communication or reusable business logic not tied to a specific feature. |
-| `stores` | Global Zustand stores used for application-wide state management. |
-| `types` | Shared TypeScript interfaces, types, and utility types. |
-| `utils` | Common helper functions, formatters, validators, and utility methods. |
+| Folder               | Responsibility                                                                                                   |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `app`                | Contains application routing, layouts, and page-level configuration only.                                        |
+| `assets`             | Stores static assets such as images, SVGs, icons, logos, and fonts.                                              |
+| `components/ui`      | Reusable UI components generated from Shadcn UI.                                                                 |
+| `components/shared`  | Shared reusable application components like `AppButton`, `AppInput`, `Loader`, etc.                              |
+| `components/layouts` | Common layout components such as `Header`, `Sidebar`, `Footer`, and page wrappers.                               |
+| `config`             | Application configuration including API endpoints, routes, environment configuration, and global settings.       |
+| `constants`          | Application-wide constants like regex patterns, validation messages, permissions, enums, and static values.      |
+| `features`           | Feature-based modules containing business logic, pages, components, hooks, services, and state for each feature. |
+| `hooks`              | Global custom React hooks used across the application.                                                           |
+| `lib`                | Third-party library configurations such as Axios, React Query, authentication setup, etc.                        |
+| `providers`          | Global providers including Theme Provider, Query Provider, Auth Provider, and other context providers.           |
+| `services`           | Shared services for API communication or reusable business logic not tied to a specific feature.                 |
+| `stores`             | Global Zustand stores used for application-wide state management.                                                |
+| `types`              | Shared TypeScript interfaces, types, and utility types.                                                          |
+| `utils`              | Common helper functions, formatters, validators, and utility methods.                                            |
 
 ---
 
