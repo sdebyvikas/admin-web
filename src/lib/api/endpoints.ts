@@ -3,12 +3,11 @@
 export const API_ENDPOINTS = {
   AUTH: {
     LOGIN: "/auth/login",
-    REFRESH_TOKEN:"/auth/refresh-token",
-     LOGOUT: "/auth/logout",
-     ME: "/auth/me",
-    // REGISTER: "/auth/register",
+    REGISTER: "/auth/register",
+    REFRESH_TOKEN: "/auth/refresh-token",
+    LOGOUT: "/auth/logout",
+    ME: "/auth/me",
    
-    // REFRESH: "/auth/refresh-token",
     // PROFILE: "/auth/profile",
     // FORGOT_PASSWORD: "/auth/forgot-password",
     // RESET_PASSWORD: "/auth/reset-password",

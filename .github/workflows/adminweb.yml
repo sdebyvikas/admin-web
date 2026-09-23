@@ -1,0 +1,118 @@
+name: Frontend Vercel CI/CD
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+      - qa
+  pull_request:
+    branches:
+      - main
+      - dev
+      - qa
+
+jobs:
+  lint-job:
+    name: Lint & Code Quality
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
+
+  test-job:
+    name: Type Check & Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: TypeScript Validation
+        run: npx tsc --noEmit
+
+      - name: Run Test Cases
+        run: npm run test:run --if-present
+
+  build-and-deploy-job:
+    name: Build & Deploy to Vercel
+    needs: [lint-job, test-job]
+    runs-on: ubuntu-latest
+
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      # Pull Vercel Environment (Preview for dev/qa/PR, Production for main)
+      - name: Pull Vercel Environment Information (Preview)
+        if: github.ref != 'refs/heads/main'
+        run: vercel pull --yes --environment=preview --token=$VERCEL_TOKEN
+
+      - name: Pull Vercel Environment Information (Production)
+        if: github.ref == 'refs/heads/main'
+        run: vercel pull --yes --environment=production --token=$VERCEL_TOKEN
+
+      # Build Project with Vercel CLI
+      - name: Build Project Artifacts (Preview)
+        if: github.ref != 'refs/heads/main'
+        run: vercel build --token=$VERCEL_TOKEN
+
+      - name: Build Project Artifacts (Production)
+        if: github.ref == 'refs/heads/main'
+        run: vercel build --prod --token=$VERCEL_TOKEN
+
+      # Deploy Prebuilt Artifacts to Vercel
+      - name: Deploy to Vercel (Preview)
+        if: github.ref != 'refs/heads/main'
+        run: vercel deploy --prebuilt --token=$VERCEL_TOKEN
+
+      - name: Deploy to Vercel (Production)
+        if: github.ref == 'refs/heads/main'
+        run: vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
+
+      # Upload Artifacts (Next.js / Vercel output)
+      - name: Create Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: vercel-build-output
+          path: .vercel/output/
+          retention-days: 8

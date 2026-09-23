@@ -1,9 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Lock, Mail } from "lucide-react";
+import type { AxiosError } from "axios";
 
 import { ROUTES } from "@/constants/routes";
 
@@ -16,6 +18,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import type { ApiErrorResponse } from "@/types/api";
 
 import { useLogin } from "../hooks/use-login";
 import {
@@ -43,6 +46,16 @@ export function LoginForm() {
         router.replace(ROUTES.DASHBOARD);
       },
     });
+  };
+
+  const getErrorMessage = () => {
+    if (!error) return null;
+    const axiosError = error as AxiosError<ApiErrorResponse>;
+    return (
+      axiosError.response?.data?.message ||
+      axiosError.message ||
+      "Invalid email or password"
+    );
   };
 
   return (
@@ -127,7 +140,7 @@ export function LoginForm() {
             {error && (
               <div className="rounded-lg border border-destructive/20 bg-destructive/10 p-3">
                 <p className="text-sm text-destructive">
-                  {(error as Error).message}
+                  {getErrorMessage()}
                 </p>
               </div>
             )}
@@ -143,6 +156,17 @@ export function LoginForm() {
                 ? "Signing in..."
                 : "Sign In"}
             </Button>
+
+            {/* Register Link */}
+            <div className="text-center text-sm text-muted-foreground">
+              Don&apos;t have an account?{" "}
+              <Link
+                href={ROUTES.REGISTER}
+                className="font-semibold text-primary underline-offset-4 hover:underline"
+              >
+                Create Account
+              </Link>
+            </div>
           </form>
         </CardContent>
       </Card>

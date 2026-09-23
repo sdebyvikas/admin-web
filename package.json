@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test:run": "echo \"No test suite configured yet\""
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",

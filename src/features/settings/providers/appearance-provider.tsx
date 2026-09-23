@@ -24,12 +24,12 @@ export function AppearanceProvider({
     );
 
 
-    root.style.setProperty("--sidebar", theme.sidebar);
+//     root.style.setProperty("--sidebar", theme.sidebar);
 
-root.style.setProperty(
-  "--sidebar-foreground",
-  theme.sidebarForeground
-);
+// root.style.setProperty(
+//   "--sidebar-foreground",
+//   theme.sidebarForeground
+// );
 
 root.style.setProperty(
   "--sidebar-primary",
@@ -41,15 +41,15 @@ root.style.setProperty(
   theme.sidebarPrimaryForeground
 );
 
-root.style.setProperty(
-  "--sidebar-accent",
-  theme.sidebarAccent
-);
+// root.style.setProperty(
+//   "--sidebar-accent",
+//   theme.sidebarAccent
+// );
 
-root.style.setProperty(
-  "--sidebar-accent-foreground",
-  theme.sidebarAccentForeground
-);
+// root.style.setProperty(
+//   "--sidebar-accent-foreground",
+//   theme.sidebarAccentForeground
+// );
 
     root.style.setProperty("--ring", theme.ring);
 
